@@ -5,6 +5,7 @@ const avgRoutes = require('./routes/avgRoutes')
 const app = express();
 app.use(express.json());
 
+// Average API
 app.use('/',avgRoutes);
 
 if (require.main === module) {
