@@ -8,12 +8,11 @@
 const validateNumber = (req, res, next) => {
     const num = req.body.num;
 
-    if (typeof num !== "number") {
+    if (typeof(num) !== "number") {
         return res.status(400).json({
             message: "Please enter a valid number"
         });
     }
-
     next();
 };
 

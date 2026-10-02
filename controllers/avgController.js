@@ -8,11 +8,9 @@ const avgModel = require('../models/avgModel');
  */
 const calculateAvg = (req, res) => {
     const num = req.body.num;
-
     avgModel.addNumber(num);
 
     const avg = avgModel.getAvg();
-
     res.status(200).json({
         message: "Average calculated successfully",
         average: avg

@@ -16,11 +16,9 @@ function addNumber(num) {
  */
 function getAvg() {
     let total = 0;
-
     for (let num of numbers) {
         total = total + num;
     }
-
     return total / numbers.length;
 }
 

@@ -1,5 +1,4 @@
 const express = require('express')
-
 const avgRoutes = require('./routes/avgRoutes')
 
 const app = express();

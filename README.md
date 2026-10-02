@@ -76,8 +76,9 @@ The API returns a 400 Bad Request response:
   "message": "please enter a vallid number"
 }
 ```
+## Client - Postman
 
-## Testing with Postman
+Postman is used as the client to send requests to the REST API.
 
 Use the following request in Postman:
 
