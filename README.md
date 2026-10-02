@@ -1,64 +1,46 @@
 # Average REST API
 
-A simple REST API built with Node.js and Express that calculates the running average of all numbers received so far.
-
----
-
-## Table of Contents
-- [Installation](#installation)
-- [Running the Server](#running-the-server)
-- [API Documentation](#api-documentation)
-- [Testing](#testing)
-- [Git Hooks & Commit Guidelines](#git-hooks--commit-guidelines)
-- [Project Structure](#project-structure)
-- [Important Notes](#important-notes)
-
----
+A simple REST API built with Node.js and Express that calculates the average of all numbers received so far.
 
 ## Installation
 
-1. **Clone the repository:**
+1. Clone the repository:
    ```bash
    git clone <YOUR-GITHUB-REPOSITORY-URL>
    cd ayurtech_Task
    ```
 
-2. **Install dependencies:**
+2. Install dependencies:
    ```bash
    npm install
    ```
 
----
+## Run the Server
 
-## Running the Server
-
-Start the development server with:
+Start the server with:
 
 ```bash
 npm start
 ```
 
-* **Server URL:** `http://localhost:3000`
+Server URL: http://localhost:3000
 
----
+## API
 
-## API Documentation
+### POST /average
 
-### **POST /average**
-Accepts a number and returns the updated average of all numbers received since the server started.
+Accepts a number and returns the average of all numbers received so far.
 
-#### **Request**
-* **URL:** `http://localhost:3000/average`
-* **Method:** `POST`
-* **Headers:** `Content-Type: application/json`
-* **Body:**
-  ```json
-  {
-    "num": 10
-  }
-  ```
+#### Request
 
-#### **Response (Success - 200 OK)**
+```json
+{
+  "num": 10
+}
+```
+
+#### Response
+
 ```json
 {
   "message": "Average calculated successfully",
@@ -66,7 +48,8 @@ Accepts a number and returns the updated average of all numbers received since t
 }
 ```
 
-*Example:* After sending `10` and subsequently sending `20`, the response will be:
+For example, after sending 10 and 20, the response will be:
+
 ```json
 {
   "message": "Average calculated successfully",
@@ -74,65 +57,66 @@ Accepts a number and returns the updated average of all numbers received since t
 }
 ```
 
-#### **Validation & Error Handling**
-The API strictly accepts numeric values. If non-number types (e.g., strings) are passed:
+#### Validation & Error Handling
 
-**Invalid Request:**
+The API accepts only numbers.
+
+For invalid input:
+
 ```json
 {
   "num": "10"
 }
 ```
 
-**Response (Error - 400 Bad Request):**
+The API returns a 400 Bad Request response:
+
 ```json
 {
-  "error": "Invalid input. 'num' must be a valid number."
+  "message": "please enter a vallid number"
 }
 ```
 
----
+## Testing with Postman
 
-## Testing
+Use the following request in Postman:
 
-### **Testing with Postman**
-1. Set HTTP method to **POST**.
-2. Enter URL: `http://localhost:3000/average`
-3. Go to **Body** -> **raw** -> select **JSON**.
-4. Pass payload:
-   ```json
-   {
-     "num": 10
-   }
-   ```
+- Method: **POST**
+- URL: `http://localhost:3000/average`
+- Body: Select **raw** -> **JSON** and send:
 
-### **Automated Tests**
-This project uses **Jest** and **Supertest** for automated test coverage. Run the test suite using:
+```json
+{
+  "num": 10
+}
+```
+
+## Tests
+
+This project uses **Jest** and **Supertest** for automated testing.
+
+Run the tests with:
 
 ```bash
 npm test
 ```
 
-**Test Coverage Includes:**
-- Single number input
-- Multiple cumulative inputs
-- Validation for non-numeric/invalid inputs
+The tests cover:
+- Single number
+- Multiple numbers
+- Invalid input
 
----
+## Git Hooks
 
-## Git Hooks & Commit Guidelines
+Husky is used to run tests before every commit.
+Commitlint is used to enforce Conventional Commit messages.
 
-* **Husky:** Automatically executes test scripts (`npm test`) prior to every git commit.
-* **Commitlint:** Enforces strict adherence to standard [Conventional Commits](https://www.conventionalcommits.org/).
-
-**Valid Commit Examples:**
-* `feat: add average api`
-* `fix: fix number validation`
-* `test: add average tests`
-* `docs: update readme`
-* `chore: configure commitlint`
-
----
+Example:
+- `feat: add average api`
+- `fix: fix number validation`
+- `test: add average tests`
+- `docs: update readme`
+- `chore: configure commitlint`
 
 ## Project Structure
 
@@ -167,8 +151,6 @@ ayurtech_Task/
 └── server.js
 ```
 
----
+## Note
 
-## Important Notes
-
-> **In-Memory Storage:** Stored numbers are kept in memory while the server process is active. Restarting or stopping the server will reset the calculation history.
+Numbers are stored in memory while the server is running. Restarting the server clears the stored numbers.
